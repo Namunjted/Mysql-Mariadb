@@ -25,10 +25,11 @@ Trên CentOS hoặc Ubuntu , toàn bộ file raw database được lưu trong th
 #### **3.Quản lý tài khoản và phân quyền**
 ```
 Hiển thị toàn bộ users:
-mysql> SELECT * FROM mysql.user;
+mysql> SELECT User FROM mysql.user;
 
-Xóa null user:
-mysql> DELETE FROM mysql.user WHERE user = ' ';
+
+Tạo một user:
+mysql> CREATE USER 'user'@'localhost' IDENTIFIED BY 'password_here';
 
 Xóa tất cả user mà không phải root:
 mysql> DELETE FROM mysql.user WHERE NOT (host="localhost" AND user="root");
@@ -80,7 +81,8 @@ $ sudo mysqlcheck -o db_schema_name -u root -p
 ```
 #### **5. Các thao tác table**
 ```
-Tất cả các thao tác bên dưới bạn phải lựa chọn trước database bằng cách dùng lệnh: mysql> USE mydatabase;
+Tất cả các thao tác bên dưới bạn phải lựa chọn trước database bằng cách dùng lệnh:
+mysql> USE mydatabase;
 
 Hiển thị toàn bộ table:
 mysql> SHOW TABLES;
@@ -145,3 +147,8 @@ mysqldump --no-data --databases databasename1 databasename2 databasename3 > stru
 Sao lưu một số table nhất định:
 mysqldump --add-drop-table -u username -pmypass databasename table_1 table_2 > databasebackup.sql
 ```
+### **Tài liệu nâng cao**
+
+* [How to show list users in a mysql-mariadb database](https://www.cyberciti.biz/faq/how-to-show-list-users-in-a-mysql-mariadb-database/)
+
+* [Cấp quyền cho user](https://mariadb.com/kb/en/library/grant/)
